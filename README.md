@@ -13,3 +13,6 @@ In a REPL:
 
 (map #(telegram.client/send-message "YOUR:API_KEY" (first %) (second %)) msgs)
 ```
+
+
+Inspired by https://github.com/thbkrshw/clj-telegram
