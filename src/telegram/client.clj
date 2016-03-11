@@ -4,11 +4,6 @@
 
 (def api-url (str "https://api.telegram.org/bot"))
 
-(def help [
-            "Commands:"
-            "!h - see this message."
-            ])
-
 (defn- request [verb token data]
   (let [response (client/post (str api-url token "/" verb)
                    {:form-params data
@@ -28,12 +23,10 @@
   ([token] (request "getUpdates" token nil))
   ([token offset] (request "getUpdates" token {:offset offset})))
 
-(defn process-update [token update]
+(defn process-update [token update commands]
   (let [m (:message update)
          chat-id (-> m :chat :id)
          text (-> m :text)
          update-id (:update_id update)
          [command string] (clojure.string/split text #" " 2)]
-    (case command
-      "/start" [chat-id help]
-      [chat-id ["Command not found"]])))
+    [command (or (second (first (filter #(= command (first %)) commands))) "command not found")]))

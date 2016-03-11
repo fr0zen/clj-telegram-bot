@@ -1,4 +1,4 @@
-(defproject clj-telegram-bot "0.1.0-SNAPSHOT"
+(defproject telegram "0.2.0"
   :description "Wrap Telegram Bot API"
   :url "https://github.com/fr0zen/clj-telegram-bot"
   :license {:name " GNU GENERAL PUBLIC LICENSE Version 3"
