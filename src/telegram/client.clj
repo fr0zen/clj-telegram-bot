@@ -9,7 +9,6 @@
                    {:form-params data
                      :as :json})
          json     (json/read-str (:body response) :key-fn keyword)]
-    (clojure.pprint/pprint json)
     json))
 
 (defn get-me [token]
@@ -30,4 +29,4 @@
          update-id (:update_id update)
          [command string] (clojure.string/split text #" " 2)]
     (get-updates token (inc update-id)) ; marking updates as processed
-    [chat-id (or (second (first (filter #(= command (first %)) commands))) "command not found")]))
+    [chat-id (or (second (first (filter #(= command (first %)) commands))) ["command not found"])]))
