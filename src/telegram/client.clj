@@ -21,12 +21,13 @@
 
 (defn get-updates
   ([token] (request "getUpdates" token nil))
-  ([token offset] (request "getUpdates" token {:offset offset})))
+  ([token offset] (request "getUpdates" token {:offset offset
+                                                :limit 1})))
 
 (defn process-update [token update commands]
   (let [m (:message update)
          chat-id (-> m :chat :id)
-         text (-> m :text)
+         text ((or (-> m :text) (-> m :chat :type))) ; workaround to deal with group type messages
          update-id (:update_id update)
          [command string] (clojure.string/split text #" " 2)]
     (get-updates token (inc update-id)) ; marking updates as processed
