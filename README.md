@@ -13,7 +13,7 @@ In a REPL:
 
 (def req (telegram.client/get-updates "YOUR:API_KEY"))
 
-(def msgs (map #(telegram.client/process-update "YOUR:API_KEY" %) (req :result) commands))
+(def msgs (map #(telegram.client/process-update "YOUR:API_KEY" % commands) (req :result)))
 
 (map #(telegram.client/send-message "YOUR:API_KEY" (first %) (second %)) msgs)
 ```

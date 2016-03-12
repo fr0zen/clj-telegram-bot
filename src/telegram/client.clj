@@ -29,4 +29,5 @@
          text (-> m :text)
          update-id (:update_id update)
          [command string] (clojure.string/split text #" " 2)]
-    [command (or (second (first (filter #(= command (first %)) commands))) "command not found")]))
+    (get-updates token (inc update-id)) ; marking updates as processed
+    [chat-id (or (second (first (filter #(= command (first %)) commands))) "command not found")]))
