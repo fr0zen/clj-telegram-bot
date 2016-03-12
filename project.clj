@@ -1,4 +1,4 @@
-(defproject telegram "0.2.4"
+(defproject telegram "0.2.6"
   :description "Telegram Bot API Wrapper for Clojure"
   :url "https://github.com/fr0zen/clj-telegram-bot"
   :license {:name " GNU GENERAL PUBLIC LICENSE Version 3"

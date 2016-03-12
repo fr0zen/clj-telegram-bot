@@ -14,9 +14,10 @@
 (defn get-me [token]
   (request "getMe" token nil))
 
-(defn send-message [token chat-id text & optionals]
+(defn send-message [token chat-id text]
   (request "sendMessage" token (merge {:chat_id chat-id
-                                        :text (clojure.string/join "\r\n" text)} optionals)))
+                                        :text (clojure.string/join "\r\n" text)}))
+  true)
 
 (defn get-updates
   ([token] (request "getUpdates" token nil))
